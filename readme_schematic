@@ -1,0 +1,51 @@
+CMOS Inverter Design using Cadence Virtuoso 
+Overview
+This project demonstrates the design and simulation of a CMOS inverter using Cadence Virtuoso with the GPDK 180nm process. It includes schematic creation, DC analysis to extract the voltage transfer characteristic (VTC), and transient analysis to evaluate switching behavior.
+Tools and Environment
+- EDA Tool: Cadence Virtuoso (version X.X)
+- Simulator: Spectre via ADE L or ADE XL
+- Process Technology: GPDK 180nm
+- Operating System: Linux (e.g., RHEL/CentOS
+
+Procedure
+1. Library Setup
+- Launch Virtuoso: virtuoso &
+- Create a new library: File → New → Library
+- Name: cmos_inv_lib
+- Attach to techfile: gpdk180
+2. Schematic Creation
+- Create a new cell view: File → New → CellView
+- Cell Name: cmos_inverter
+- View: schematic
+- Add components:
+- PMOS (pmos4) and NMOS (nmos4) from the GPDK180 library
+- VDD and GND symbols
+- Input source: vpulse for transient or vdc for DC
+- Output wire
+- Connect using Add → Wire (narrow)
+- Check and save: Design → Check and Save
+3. DC Analysis
+- Open ADE L: Launch → ADE L
+- Set simulator to Spectre
+- Add input source as vdc and sweep from 0 to VDD (e.g., 1.8V)
+- Go to Analysis → Choose → DC
+- Sweep variable: Vin
+- Sweep range: 0 to 1.8V
+- Add output expression: Vout
+- Run simulation: Simulation → Netlist and Run
+- Save the VTC plot
+4. Transient Analysis
+- Replace vdc with vpulse for input
+- Set rise/fall time, pulse width, and period appropriately
+- In ADE L, go to Analysis → Choose → Transient
+- Time range: e.g., 0 to 20ns
+- Add Vin and Vout to outputs
+- Run simulation and observe switching behavior
+- Save waveform plots
+Results
+- DC Analysis: Voltage Transfer Characteristic (VTC) curve
+- Transient Analysis: Switching waveform showing inverter delay and transition behavior
+Notes
+- Ensure the GPDK180 techfile is correctly attached to the library.
+- Use Design → Check and Save before simulation to avoid errors.
+- For layout, DRC, and LVS, extend this project using Virtuoso Layout Editor.
